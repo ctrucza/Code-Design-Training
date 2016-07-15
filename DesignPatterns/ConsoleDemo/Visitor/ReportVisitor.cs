@@ -3,32 +3,32 @@ using System.Text;
 
 namespace ConsoleDemo.Visitor.v3
 {
-	class ReportVisitor : IVisitor
+class ReportVisitor : IVisitor
+{
+	readonly StringBuilder report = new StringBuilder();
+
+	public void Print()
 	{
-		readonly StringBuilder report = new StringBuilder();
+		Console.WriteLine(report);
+	}
 
-		public void Print()
-		{
-			Console.WriteLine(report);
-		}
+	public void VisitNewCustomerCommand(NewCustomerCommand customerCommand)
+	{
+		report.AppendLine($"New customer request: {customerCommand.Name} in business: {customerCommand.BusinessDomain}");
+	}
 
-		public void VisitCustomerRequest(NewCustomerRequest customerRequest)
+	public void VisitNewSalesOrderCommand(NewSalesOrderCommand salesOrderCommand)
+	{
+		report.AppendLine("Sales order request: ");
+		foreach (var line in salesOrderCommand.OrderLines)
 		{
-			report.AppendLine($"New customer request: {customerRequest.Name} in business: {customerRequest.BusinessDomain}");
-		}
-
-		public void VisitSalesOrderRequest(NewSalesOrderRequest salesOrderRequest)
-		{
-			report.AppendLine("Sales order request: ");
-			foreach (var line in salesOrderRequest.OrderLines)
-			{
-				report.AppendLine($"\t Product={line.Product} Quantity={line.Quantity}");
-			}
-		}
-
-		public void VisitPurchaseOrderRequest(NewPurchaseOrderRequest purchaseOrder)
-		{
-			report.AppendLine($"Purchase order request: Product={purchaseOrder.Product} Quatity={purchaseOrder.Quantity}");
+			report.AppendLine($"\t Product={line.Product} Quantity={line.Quantity}");
 		}
 	}
+
+	public void VisitNewPurchaseOrderCommand(NewPurchaseOrderCommand purchaseOrder)
+	{
+		report.AppendLine($"Purchase order request: Product={purchaseOrder.Product} Quatity={purchaseOrder.Quantity}");
+	}
+}
 }

@@ -20,17 +20,17 @@ namespace ConsoleDemo.Visitor.v3
 			toSave.Clear();
 		}
 
-		public void VisitCustomerRequest(NewCustomerRequest customerRequest)
+		public void VisitNewCustomerCommand(NewCustomerCommand customerCommand)
 		{
-			toSave.Add(customerRequest);
+			toSave.Add(customerCommand);
 		}
 
-		public void VisitSalesOrderRequest(NewSalesOrderRequest salesOrderRequest)
+		public void VisitNewSalesOrderCommand(NewSalesOrderCommand salesOrderCommand)
 		{
-			toSave.Add(salesOrderRequest);
+			toSave.Add(salesOrderCommand);
 		}
 
-		public void VisitPurchaseOrderRequest(NewPurchaseOrderRequest purchaseOrder)
+		public void VisitNewPurchaseOrderCommand(NewPurchaseOrderCommand purchaseOrder)
 		{
 			toSave.Add(purchaseOrder);
 		}

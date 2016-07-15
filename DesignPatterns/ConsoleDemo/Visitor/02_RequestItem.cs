@@ -11,27 +11,27 @@ namespace ConsoleDemo.Visitor.v2
 		void PrettyPrint();
 	}
 
-	class NewPurchaseOrderRequest : IRequestProcessor
+class NewPurchaseOrderRequest : IRequestProcessor
+{
+	public NewPurchaseOrderRequest(Product product)
 	{
-		public NewPurchaseOrderRequest(Product product)
-		{
-			Product = product;
-		}
-
-		public void Approve()
-		{
-			// Interact w/ the databse and use external services to process a new purchase order request
-		}
-
-		public void PrettyPrint()
-		{
-			Console.WriteLine($"Purchase order request: Product={Product} Quatity={Quantity}");
-		}
-
-		public Product Product { get; }
-
-		public int Quantity { get;  }
+		Product = product;
 	}
+
+	public void Approve()
+	{
+		// Interact w/ the databse and use external services to process a new purchase order request
+	}
+
+	public void PrettyPrint()
+	{
+		Console.WriteLine($"Purchase order request: Product={Product} Quatity={Quantity}");
+	}
+
+	public Product Product { get; }
+
+	public int Quantity { get;  }
+}
 
 	class NewSalesOrderRequest : IRequestProcessor
 	{
